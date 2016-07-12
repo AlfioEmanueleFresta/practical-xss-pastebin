@@ -1,0 +1,6 @@
+before_script:
+  - PROJECTPATH=/builds/cyber-practicals/experiment-xss-requestbin/ sh provision.sh
+
+job:
+  script:
+    - vendor/bin/phpunit tests

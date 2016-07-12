@@ -1,0 +1,6 @@
+.vagrant
+.idea
+vendor/
+composer.lock
+SeleniumServer.jar
+install_phantomjs.sh

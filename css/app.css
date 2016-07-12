@@ -1,0 +1,13 @@
+body {
+    min-height: 2000px;
+}
+
+.navbar-static-top {
+    margin-bottom: 19px;
+}
+
+.sl {
+    font-weight: bold;
+    font-size: larger;
+}
+
