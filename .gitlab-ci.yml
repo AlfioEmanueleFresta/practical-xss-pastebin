@@ -1,5 +1,5 @@
 before_script:
-  - PROJECTPATH=/builds/cyber-practicals/experiment-xss-requestbin/ sh provision.sh
+  - PROJECTPATH=/builds/cyber-practicals/practical-xss-requestbin/ sh provision.sh
 
 job:
   script:
