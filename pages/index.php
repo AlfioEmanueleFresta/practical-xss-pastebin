@@ -1,6 +1,7 @@
 <?php
 
 $highlight_request_id = (int) (@$_GET['highlight_request_id']);
+$test_run = isset($_GET['test_run']);
 
 ?>
 
@@ -18,6 +19,7 @@ $highlight_request_id = (int) (@$_GET['highlight_request_id']);
 
         <?php
         $requests = getLatestRequests();
+        $first = true;
         ?>
 
         <table class="table table-condensed table-striped">
@@ -31,7 +33,7 @@ $highlight_request_id = (int) (@$_GET['highlight_request_id']);
             </thead>
 
             <?php foreach ($requests as $request) { ?>
-                <tr<?php if ($request['id'] == $highlight_request_id) { ?> class="info"<?php }?>>
+                <tr<?php if (($request['id'] == $highlight_request_id) or ($test_run and $first)) { ?> class="info"<?php }?>>
                     <td><?= $request['id']; ?></td>
                     <td><?= date('d/m/Y', $request['timestamp']); ?></td>
                     <td><?= date('H:i:s', $request['timestamp']); ?></td>
@@ -44,13 +46,24 @@ $highlight_request_id = (int) (@$_GET['highlight_request_id']);
                     </td>
                 </tr>
 
-            <?php } ?>
+            <?php
+                if ($first) { $first = false; }
+            } ?>
 
             <?php if (!$requests) { ?>
                 <tr class="warning">
                     <td colspan="6">
-                        No request captured. Use the URL on the right to capture your requests,
-                        then <a href="<?= getRefreshURL(); ?>">refresh this page</a>.
+                        <h4>There are no requests yet.</h4>
+
+                        <p>
+                            Use the URL on the right to capture your requests,
+                            then <a href="<?= getRefreshURL(); ?>">refresh this page</a>.
+                        </p>
+
+                        <p>
+                            Alternatively, you can use the "Test Request" button on the right
+                            to send a test HTTP request.
+                        </p>
                     </td>
                 </tr>
             <?php } ?>
@@ -62,9 +75,13 @@ $highlight_request_id = (int) (@$_GET['highlight_request_id']);
     <div class="col-xs-3">
 
         <p>
-            <a href="<?= getRefreshURL(); ?>" class="btn btn-default btn-block">
+            <a href="<?= getRefreshURL(); ?>" id="refresh-button" class="btn btn-default btn-block">
                 <i class="glyphicon glyphicon-refresh"></i>
                 Refresh
+            </a>
+            <a href="#" id="test-button" class="btn btn-block btn-default btn-sm">
+                <i class="glyphicon glyphicon-info-sign"></i>
+                Test request
             </a>
         </p>
         <p>&nbsp;</p>
