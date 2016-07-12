@@ -43,8 +43,6 @@ cd webapp/  # cd into the project's folder
 vagrant destroy -f && git pull && vagrant up
 ```
 
-Note: This will discard any changes made to the VM's database.
-
 
 ## Testing
 
