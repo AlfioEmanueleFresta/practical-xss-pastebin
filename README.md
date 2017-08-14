@@ -27,7 +27,7 @@ vagrant up
 The first time you run the machine it will take some time to download the base Linux image and to configure
 the VM (install and configure all dependencies).
 
-You can access the web application at [http://127.0.0.1:8080](http://127.0.0.1:8080) (or replace 127.0.0.1 with your local/public IP).
+You can access the web application at [http://127.0.0.1:8070](http://127.0.0.1:8070) (or replace 127.0.0.1 with your local/public IP).
 
 You can SSH into the machine, after it has been started, using `vagrant ssh`. Please note that the project directory
 is mounted at `/vagrant/` in the VM.
